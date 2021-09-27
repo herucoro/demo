@@ -32,6 +32,6 @@ public class GreetingController {
     }
     @GetMapping("/employee/{number}")
     public EmployeeEntity employeeSelect(@PathVariable(value = "number") String number) {
-        return service.getAll().get(Integer.parseInt(number));
+        return service.getSelect(number);
     }
 }
