@@ -35,6 +35,6 @@ public class GreetingController {
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/employee/{number}")
     public EmployeeEntity employeeSelect(@PathVariable(value = "number") String number) {
-        return service.getAll().get(Integer.parseInt(number));
+        return service.getSelect(number);
     }
 }

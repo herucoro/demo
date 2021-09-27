@@ -16,4 +16,9 @@ public class EmployeeService {
     public List<EmployeeEntity> getAll() {
         return repo.findAll();
     }
+
+    public EmployeeEntity getSelect(String i) {
+        var data = getAll();
+        return data.stream().filter(x -> x.getUserId().equals(Integer.parseInt(i))).findFirst().get();
+    }
 }
