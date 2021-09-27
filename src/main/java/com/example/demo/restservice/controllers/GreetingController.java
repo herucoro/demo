@@ -8,6 +8,7 @@ import com.example.demo.restservice.services.EmployeeService;
 import com.example.demo.restservice.services.Greeting;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,6 +31,8 @@ public class GreetingController {
     public List<EmployeeEntity> employee() {
         return service.getAll();
     }
+
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/employee/{number}")
     public EmployeeEntity employeeSelect(@PathVariable(value = "number") String number) {
         return service.getAll().get(Integer.parseInt(number));
