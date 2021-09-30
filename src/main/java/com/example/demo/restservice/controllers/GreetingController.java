@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import com.example.demo.restservice.entities.EmployeeEntity;
+import com.example.demo.restservice.entities.MaterialEntity;
 import com.example.demo.restservice.services.EmployeeService;
 import com.example.demo.restservice.services.Greeting;
+import com.example.demo.restservice.services.MaterialService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +24,9 @@ public class GreetingController {
     @Autowired
     private EmployeeService service;
 
+    @Autowired
+    private MaterialService materialService;
+
     @GetMapping("/greeting")
     public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
         return new Greeting(counter.incrementAndGet(), String.format(template, name));
@@ -36,5 +41,11 @@ public class GreetingController {
     @GetMapping("/employee/{number}")
     public EmployeeEntity employeeSelect(@PathVariable(value = "number") String number) {
         return service.getSelect(number);
+    }
+
+    @CrossOrigin
+    @GetMapping("/material")
+    public List<MaterialEntity> material() {
+        return materialService.getAll();
     }
 }
